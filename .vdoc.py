@@ -116,118 +116,111 @@
 #
 #
 #
-from PIL import ImageFont
-roboto_url = "https://github.com/google/fonts/raw/main/ofl/roboto/Roboto%5Bwdth,wght%5D.ttf"
-svg_start = """
-<svg xmlns="http://www.w3.org/2000/svg">
-    <defs>
-    <style type="text/css">
-    @import url("https://fonts.googleapis.com/css2?family=Roboto");
-    text {{ font-family: \'Roboto\', sans-serif;
-    font-kerning:none;
-    font-variant-ligatures:none
-    }}
-    </style>
-    </defs>
-"""
-def to_svg_custom(cloud_obj):
-  svg_str = svg_start
-  for (word, count), font_size, position, orientation, color in cloud_obj.layout_:
-    x = position[0]
-    y = position[1]
-    
-    font = ImageFont.truetype(cloud_obj.font_path, font_size)
-            
-    ascent, descent = font.getmetrics()
-    
-    """
-    from stackoverflow - doesn't seem to be according to PIL docs (should return height, width) but doesn't work otherwise...
-    https://stackoverflow.com/questions/43060479/how-to-get-the-font-pixel-height-using-pil-imagefont
-    """
-    (getsize_width, baseline), (offset_x, offset_y) = font.font.getsize(word)
-    
-    """
-    svg transform string - empty if no rotation (text horizontal), otherwise contains rotate and translate numbers
-    """
-    svgTransform = ""    
-    
-    svgFill = ' fill="{}"'.format(color)    
-        
-    """
-    this is all it takes to transform x,y to svg space 
-    it was arrived at using the methods of computer graphics programmers
-    https://twitter.com/erkaman2/status/1104105232034861056
-    """
-    if orientation is None:
-        svgX = y - offset_x
-        svgY = x + ascent - offset_y      
-        
-    else:
-        svgX = y + ascent - offset_y
-        svgY = x + offset_x
-        svgTransform = ' transform="rotate(-90, {}, {}) translate({}, 0)"'.format(svgX, svgY, -getsize_width)
-
-    """
-    print SVG to standard output 
-    """
-    svg_str += ('<text x="{}" y="{}" font-size="{}"{}{}>{}</text>'.format(svgX, svgY, font_size, svgTransform, svgFill, word))
-  return svg_str + "</svg>"
-#
-#
-#
 #| label: orig-wordcloud
 #| fig-align: center
+import spacy
+nlp = {
+  'en': spacy.load("en_core_web_sm"),
+  'uk': spacy.load("uk_core_news_sm")
+}
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
-from IPython.display import SVG
-portfolio_df = pd.read_excel("Student_portfolios.xlsx")
+portfolio_df = pd.read_csv("Student_portfolios.csv")
 portfolio_df = portfolio_df[~pd.isna(portfolio_df['Bio'])].copy()
-#portfolio_df.head()
+bio_list_en = list(portfolio_df['Bio'].values)
+# Preprocess bios individually
+def clean_bios(raw_bio_list, lang):
+  cleaned_sents = []
+  lang_nlp = nlp[lang]
+  for cur_bio in raw_bio_list:
+    bio_doc = lang_nlp(cur_bio)
+    bio_tokens = [t.text for t in bio_doc if not t.is_stop]
+    bio_sent = " ".join(bio_tokens)
+    cleaned_sents.append(bio_sent)
+  return cleaned_sents
+cleaned_bio_list_en = clean_bios(bio_list_en, 'en')
 def combine_bios(bio_list):
   bio_str = "\n".join(bio_list)
   return bio_str
-main_bio_list = list(portfolio_df['Bio'].values)
-bio_str = combine_bios(main_bio_list)
+bio_str_en = combine_bios(cleaned_bio_list_en)
+wc_options = {
+  'background_color': 'white',
+  'font_path': 'assets/Roboto.ttf',
+  'scale': 8,
+  'random_state': 2024,
+  'width': 500,
+  'height': 400,
+}
 def display_wordcloud(text_str):
-  cloud = WordCloud(
-    background_color='white',
-    font_path='assets/Roboto.ttf',
-    scale=10
-  )
-  cloud.generate(bio_str)
-  #svg_content = to_svg_custom(cloud)
-  #with open('test.svg', 'w', encoding='utf-8') as outfile:
-  #  outfile.write(svg_content)
-  #plt.figure(figsize=(10,8), dpi=300)
+  cloud = WordCloud(**wc_options)
+  cloud.generate(text_str)
   plt.imshow(cloud, interpolation='bilinear')
   plt.axis("off")
-display_wordcloud(bio_str)
-#SVG("test.svg")
-#plt.imshow(cloud, interpolation='bilinear')
-#plt.axis("off")
+display_wordcloud(bio_str_en)
 #
 #
 #
 #
 #
 #
-#
-jj_sent = "Jeff teaches Data Ethics at Georgetown University."
-jj_bio = " ".join([jj_sent] * 100)
-print(jj_bio[:500] + "...")
-#
-#
-#
-#| label: wordcloud-jeff-bio
+#| label: orig-wordcloud-uk
 #| fig-align: center
-bio_list_fake = main_bio_list.copy()
-bio_list_fake.append(jj_bio)
-bio_str_fake = combine_bios(bio_list_fake)
-bio_cloud = WordCloud(background_color='white')
-bio_cloud.generate(bio_str_fake)
-plt.imshow(bio_cloud, interpolation='bilinear')
+bio_list_uk = list(portfolio_df['Bio_uk'].values)
+cleaned_bio_list_uk = clean_bios(bio_list_uk, 'uk')
+bio_str_uk = combine_bios(cleaned_bio_list_uk)
+display_wordcloud(bio_str_uk)
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#| label: jeff-bio-en
+jj_sent_en = "Jeff teaches Data Ethics at Georgetown University."
+jj_bio_en = " ".join([jj_sent_en] * 100)
+print(jj_bio_en[:230] + "...")
+#
+#
+#
+#| label: wordcloud-jeff-bio-en
+#| fig-align: center
+bio_list_fake_en = bio_list_en.copy()
+bio_list_fake_en.append(jj_bio_en)
+bio_str_fake_en = combine_bios(bio_list_fake_en)
+bio_cloud_fake_en = WordCloud(**wc_options)
+bio_cloud_fake_en.generate(bio_str_fake_en)
+plt.imshow(bio_cloud_fake_en, interpolation='bilinear')
+plt.axis("off")
+#
+#
+#
+#
+#
+#
+#| label: jeff-bio-uk
+jj_sent_uk = "Джеф викладає етику даних у Джорджтаунському університеті."
+jj_bio_uk = " ".join([jj_sent_uk] * 100)
+print(jj_bio_uk[:200] + "...")
+#
+#
+#
+#| label: wordcloud-jeff-bio-ukr
+#| fig-align: center
+bio_list_fake_uk = bio_list_uk.copy()
+bio_list_fake_uk.append(jj_bio_uk)
+bio_str_fake_uk = combine_bios(bio_list_fake_uk)
+bio_cloud_fake_uk = WordCloud(**wc_options)
+bio_cloud_fake_uk.generate(bio_str_fake_uk)
+plt.imshow(bio_cloud_fake_uk, interpolation='bilinear')
 plt.axis("off")
 #
 #
@@ -237,42 +230,72 @@ plt.axis("off")
 #
 #
 #
+#
+#
+#
+#
+#
+#
+#| label: normalize-freqs-en
 # Each bio's freqs should count 1/N in overall
-#print(bio_list_fake)
 from sklearn.feature_extraction.text import CountVectorizer
-cv = CountVectorizer(
+from sklearn.preprocessing import normalize
+cv_en = CountVectorizer(
   min_df=1,
   stop_words='english'
 )
-result = cv.fit_transform(bio_list_fake)
-dtm = result.todense()
+dtm_en_sparse = cv_en.fit_transform(bio_list_fake_en)
+dtm_en = dtm_en_sparse.todense()
 #print(dtm.shape)
-row_sums = dtm.sum(axis=1)
+row_sums_en = dtm_en.sum(axis=1)
 #print(row_sums.shape)
-dtm_r0 = dtm[0,:]
-r0_sum = dtm_r0.sum()
-r0_norm = dtm_r0 / r0_sum
-# Now with `normalize()`
-from sklearn.preprocessing import normalize
-dtm_norm = normalize(np.asarray(dtm), axis=1, norm='l1')
+dtm_r0_en = dtm_en[0,:]
+r0_sum_en = dtm_r0_en.sum()
+r0_norm_en = dtm_r0_en / r0_sum_en
+# Now use `normalize()`
+dtm_norm_en = normalize(np.asarray(dtm_en), axis=1, norm='l1')
 # And compute col sums of normalized DTM
-dtm_colsums = dtm_norm.sum(axis=0)
+dtm_colsums_en = dtm_norm_en.sum(axis=0)
 # And combine with the words in a df
-freq_df = pd.DataFrame({
-  'term': cv.get_feature_names_out(),
-  'freq': dtm_colsums
+freq_df_en = pd.DataFrame({
+  'term': cv_en.get_feature_names_out(),
+  'freq': dtm_colsums_en
 })
 #freq_df['term'].values
 #
 #
 #
-#| label: fake-bio-wordcloud-normalized
+#| label: normalized-wordcloud-en
 #| fig-align: center
-freq_dict = freq_df.set_index('term').to_dict(orient='dict')['freq']
-bio_cloud_eq = WordCloud(background_color='white')
-bio_cloud_eq.generate_from_frequencies(freq_dict)
-plt.imshow(bio_cloud_eq, interpolation='bilinear')
+freq_dict_en = freq_df_en.set_index('term').to_dict(orient='dict')['freq']
+bio_cloud_eq_en = WordCloud(**wc_options)
+bio_cloud_eq_en.generate_from_frequencies(freq_dict_en)
+plt.imshow(bio_cloud_eq_en, interpolation='bilinear')
 plt.axis("off")
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #

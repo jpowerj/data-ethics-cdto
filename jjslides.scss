@@ -23,6 +23,10 @@
     margin-bottom: 0px !important;
 }
 
+.crunch-ul ul {
+    margin-bottom: 0px !important;
+}
+
 .double-logo {
     display: block;
     position: fixed;
@@ -50,6 +54,13 @@
 
 .logo-left {
     padding-right: 5px;
+}
+
+.math-80 .math.display {
+    font-size: 80% !important;
+}
+.math-90 .math.display {
+    font-size: 90% !important;
 }
 
 // .slide-logo::before {
