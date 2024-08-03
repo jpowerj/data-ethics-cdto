@@ -8,7 +8,7 @@ date: 2024-08-08
 date-format: "dddd, D MMMM YYYY"
 format:
   revealjs:
-    output-file: "slides.html"
+    output-file: "index.html"
     html-math-method: mathjax
     slide-number: true
     scrollable: true
@@ -24,19 +24,7 @@ format:
       barhtml:
         header: "<div class='menubar'><ul class='menu'></ul></div>"
       scale: 0.5
-  html:
-    output-file: "index.html"
-    df-print: kable
-    toc: true
 ---
-
-::: {.content-visible unless-format="revealjs"}
-
-<center class='mb-3'>
-<a class='h2' href='./slides.html' target='_blank'>Open slides in new tab &rarr;</a>
-</center>
-
-:::
 
 # Привіт! {data-stack-name="Привіт!"}
 

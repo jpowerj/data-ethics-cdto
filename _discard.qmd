@@ -109,3 +109,11 @@ def to_svg_custom(cloud_obj):
     svg_str += ('<text x="{}" y="{}" font-size="{}"{}{}>{}</text>'.format(svgX, svgY, font_size, svgTransform, svgFill, word))
   return svg_str + "</svg>"
 ```
+
+::: {.content-visible unless-format="revealjs"}
+
+<center class='mb-3'>
+<a class='h2' href='./slides.html' target='_blank'>Open slides in new tab &rarr;</a>
+</center>
+
+:::
