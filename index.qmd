@@ -1,0 +1,261 @@
+
+---
+title: "Data Ethics: Algorithmic Privacy and Scarce Resource Allocation"
+subtitle: "CDTO Campus 2024: *Shaping the Digital Future*"
+author: "Jeff Jacobs"
+institute: "Georgetown University<br /><a href='mailto:jj1088@georgetown.edu'>`jj1088@georgetown.edu`</a>"
+date: 2024-08-08
+date-format: "dddd, D MMMM YYYY"
+format:
+  revealjs:
+    output-file: "slides.html"
+    html-math-method: mathjax
+    slide-number: true
+    scrollable: true
+    link-external-icon: true
+    link-external-newwindow: true
+    theme: [default, 'jjslides.scss']
+    footer: "Shaping the Digital Future: Data Ethics"
+    logo: "images/DSAN_Combined.png"
+    revealjs-plugins:
+      - simplemenu
+    simplemenu:
+      flat: true
+      barhtml:
+        header: "<div class='menubar'><ul class='menu'></ul></div>"
+      scale: 0.5
+  html:
+    output-file: "index.html"
+    df-print: kable
+    toc: true
+---
+
+::: {.content-visible unless-format="revealjs"}
+
+<center class='mb-3'>
+<a class='h2' href='./slides.html' target='_blank'>Open slides in new tab &rarr;</a>
+</center>
+
+:::
+
+# Привіт! {data-stack-name="Привіт!"}
+
+## Who Am I? How Can I Help You?
+
+```{=html}
+<table>
+<thead>
+<tr>
+  <th align="center">💻</th>
+  <th></th>
+  <th align="center">🌏</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><span data-qmd="MS in **Computer Science**, Stanford University"></span></td>
+  <td>&rarr;</td>
+  <td><span data-qmd="PhD in **International Relations**, Columbia University"></span></td>
+</tr>
+<tr>
+  <td><span data-qmd="Assistant Teaching Professor, **Data Science and Analytics**"></span></td>
+  <td>&rarr;</td>
+  <td><span data-qmd="Courtesy Teaching Professor, **McCourt School of Public Policy**"></span></td>
+</tr>
+</tbody>
+</table>
+```
+
+* Cross-listed course: [Data Ethics and Policy](https://jjacobs.me/dsan5450/){target='_blank'} (All slides/lectures available at that link!)
+
+## Dissertation: "Our Word is Our Weapon" {.smaller .crunch-img .title-12}
+
+* Cold War arms shipments (SIPRI) vs. propaganda (*Печать СССР*): here, to 🇪🇹
+
+![](images/eth_arms.svg){fig-align="center"}
+
+* Only know basic words from 1 year російською course 🙈 but I will try my best!
+
+## Data Ethics in Times of War {.smaller .crunch-title .crunch-img .crunch-th .crunch-td-last}
+
+```{=html}
+<table>
+<colgroup>
+  <col span="1" style="width: 50%;">
+  <col span="1" style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+  <th align="center">🇵🇸</th>
+  <th align="center">🇺🇦</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border-bottom: 0px !important;"><span data-qmd="2015-2023: Taught **Mobile App Development** in **West Bank**+**Gaza**"></span></td>
+  <td style="border-bottom: 0px !important;"><span data-qmd="So when I learned of **дія**, I thought some lessons/skills could apply!"></span></td>
+</tr>
+<tr>
+  <td align="center" style="vertical-align: top;"><img src='images/doroob_crop.png' width="80%"></td>
+  <td align="center" style="vertical-align: top;"><img src='images/diia.png' width="78%"></td>
+</tr>
+</tbody>
+</table>
+```
+
+# Ethical Frameworks: Implicit and Explicit {data-stack-name="Ethical Frameworks"}
+
+* We are always using **ethical frameworks**, even when we don't realize it!
+
+## Cake Cutting
+
+* You and a friend are very hungry
+* You come across a tasty **cake**!
+* How do you divide it?
+
+## Ethical Frameworks
+
+* Your instinct may be: divide **equally**, so that you and your friend are treated equally
+* But... are you treated equally?
+* What if your friend is 10 times **hungrier**?
+* What if your stomach is sensitive to sugar, so you can't eat more than $1/4$?
+
+## Ethical Framework Implicit in Learning "Who You Are"! {.smaller .crunch-title .crunch-quarto-figure}
+
+```{python}
+#| label: orig-wordcloud
+#| fig-align: center
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+portfolio_df = pd.read_excel("Student_portfolios.xlsx")
+portfolio_df = portfolio_df[~pd.isna(portfolio_df['Bio'])].copy()
+main_bio_list = list(portfolio_df['Bio'].values)
+def combine_bios(bio_list):
+  bio_str = "\n".join(bio_list)
+  return bio_str
+bio_str = combine_bios(main_bio_list)
+wc_options = {
+  'background_color': 'white',
+  'font_path': 'assets/Roboto.ttf',
+  'scale': 8,
+  'random_state': 2024,
+  # 'width': 800,
+  # 'height': 400,
+}
+def display_wordcloud(text_str):
+  cloud = WordCloud(**wc_options)
+  cloud.generate(bio_str)
+  plt.imshow(cloud, interpolation='bilinear')
+  plt.axis("off")
+display_wordcloud(bio_str)
+```
+
+* How might this be **biased**, relative to **equal** contribution from everyone?
+
+## Now With Fake Jeff Bio {.crunch-title .crunch-img}
+
+```{python}
+jj_sent = "Jeff teaches Data Ethics at Georgetown University."
+jj_bio = " ".join([jj_sent] * 100)
+print(jj_bio[:500] + "...")
+```
+
+```{python}
+#| label: wordcloud-jeff-bio
+#| fig-align: center
+bio_list_fake = main_bio_list.copy()
+bio_list_fake.append(jj_bio)
+bio_str_fake = combine_bios(bio_list_fake)
+bio_cloud = WordCloud(**wc_options)
+bio_cloud.generate(bio_str_fake)
+plt.imshow(bio_cloud, interpolation='bilinear')
+plt.axis("off")
+```
+
+## Normalizing Counts {.crunch-title .crunch-img}
+
+* This is where **ethical framework** comes into play, whether implicit or explicit!
+* Normalized: each person gets weight $\omega = 1/N$
+
+```{python}
+# Each bio's freqs should count 1/N in overall
+from sklearn.feature_extraction.text import CountVectorizer
+cv = CountVectorizer(
+  min_df=1,
+  stop_words='english'
+)
+result = cv.fit_transform(bio_list_fake)
+dtm = result.todense()
+#print(dtm.shape)
+row_sums = dtm.sum(axis=1)
+#print(row_sums.shape)
+dtm_r0 = dtm[0,:]
+r0_sum = dtm_r0.sum()
+r0_norm = dtm_r0 / r0_sum
+# Now with `normalize()`
+from sklearn.preprocessing import normalize
+dtm_norm = normalize(np.asarray(dtm), axis=1, norm='l1')
+# And compute col sums of normalized DTM
+dtm_colsums = dtm_norm.sum(axis=0)
+# And combine with the words in a df
+freq_df = pd.DataFrame({
+  'term': cv.get_feature_names_out(),
+  'freq': dtm_colsums
+})
+#freq_df['term'].values
+```
+
+```{python}
+#| label: fake-bio-wordcloud-normalized
+#| fig-align: center
+freq_dict = freq_df.set_index('term').to_dict(orient='dict')['freq']
+bio_cloud_eq = WordCloud(**wc_options)
+bio_cloud_eq.generate_from_frequencies(freq_dict)
+plt.imshow(bio_cloud_eq, interpolation='bilinear')
+plt.axis("off")
+```
+
+# Resource Allocation {data-stack-name="Resource Allocation"}
+
+## Background: Indochina Mine Defusal {.crunch-title}
+
+::: {.columns}
+::: {.column width="50%"}
+
+* Using **GIS** to allocate **mine defusal teams** to regions of Indochina mined by the US
+* What information do we need about each region?
+  * Absolute population? Population density? Mines per person?
+  * Can equipment be transported there?
+
+:::
+::: {.column width="50%"}
+
+![](images/indochina.png){fig-align="center" width="90%"}
+
+:::
+:::
+
+## Now in Україна
+
+```{=html}
+<style>
+.embed-container {position: relative; padding-bottom: 67%; height: 0; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}
+</style>
+<center>
+<div class="embed-container">
+  <iframe width="600" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="Ukraine_Regions" src="//georgetownuniv.maps.arcgis.com/apps/Embed/index.html?webmap=50668b6cb4664b79948817100400b0dc&extent=19.2882,43.8227,44.7765,53.1106&home=true&zoom=true&previewImage=false&scale=true&disable_scroll=true&theme=light"></iframe>
+</div>
+</center>
+```
+
+# Privacy-Preserving Computation {data-stack-name="Privacy"}
+
+## Differential Privacy
+
+* The key idea: as people make more and more **queries** to your DB, your **response** gets less and less accurate
+
+# Q & A
+
+# Thank You!

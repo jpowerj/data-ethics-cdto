@@ -1,0 +1,111 @@
+---
+    # footer: "<div class='double-logo'><div class='logo-container'><img class='logo-img logo-left' src='images/dsan_twolines.png'><img class='logo-img' src='images/mccourt.svg'></div></div>"
+    #footer: "<img class='center-logo' src='images/dsan_twolines.png'>"
+    #footer: "<div class='double-logo'><div class='logo-container'><img class='logo-img logo-left' src='images/dsan_twolines.png'><img class='logo-img' src='images/mccourt.svg'></div></div>"
+---
+
+```{r}
+library(tidyverse)
+bios <- paste0(readLines("bios.txt"), collapse="\n")
+str_split(bios, "---")
+# length(bios)
+# for (bio_index in seq_along(bios)) {
+#   cur_bio <- bios[[bio_index]]
+#   print(bio_index)
+#   writeLines(cur_bio)
+# }
+#portfolio_df |> select("Bio") |> head(2)
+```
+
+ | | 🌏 |
+| - |:-:| - |
+| MS in **Computer Science** from Stanford University | &rarr; | PhD in **International Political Economy** from Columbia University |
+| Assistant Teaching Professor, **Data Science and Analytics** | &rarr; | Courtesy Teaching Professor, **McCourt School of Public Policy** |
+
+: {tbl-colwidths="[45,10,45]"}
+
+Wordcloud with normalized frequencies (based on https://amueller.github.io/word_cloud/auto_examples/frequency.html)
+
+```{python}
+import multidict
+import re
+def compute_frequency_dict(sentence):
+    fullTermsDict = multidict.MultiDict()
+    tmpDict = {}
+
+    # making dict for counting frequencies
+    for text in sentence.split(" "):
+        if re.match("a|the|an|the|to|in|for|of|or|by|with|is|on|that|be", text):
+            continue
+        val = tmpDict.get(text, 0)
+        tmpDict[text.lower()] = val + 1
+    for key in tmpDict:
+        fullTermsDict.add(key, tmpDict[key])
+    return fullTermsDict
+
+bio_dict = compute_frequency_dict(bio_str)
+print(bio_dict)
+bio_cloud_eq = WordCloud(background_color='white')
+bio_cloud_eq.generate_from_frequencies(bio_dict)
+plt.imshow(bio_cloud_eq, interpolation='bilinear')
+plt.axis("off")
+```
+
+```{python}
+from PIL import ImageFont
+roboto_url = "https://github.com/google/fonts/raw/main/ofl/roboto/Roboto%5Bwdth,wght%5D.ttf"
+svg_start = """
+<svg xmlns="http://www.w3.org/2000/svg">
+    <defs>
+    <style type="text/css">
+    @import url("https://fonts.googleapis.com/css2?family=Roboto");
+    text {{ font-family: \'Roboto\', sans-serif;
+    font-kerning:none;
+    font-variant-ligatures:none
+    }}
+    </style>
+    </defs>
+"""
+def to_svg_custom(cloud_obj):
+  svg_str = svg_start
+  for (word, count), font_size, position, orientation, color in cloud_obj.layout_:
+    x = position[0]
+    y = position[1]
+    
+    font = ImageFont.truetype(cloud_obj.font_path, font_size)
+            
+    ascent, descent = font.getmetrics()
+    
+    """
+    from stackoverflow - doesn't seem to be according to PIL docs (should return height, width) but doesn't work otherwise...
+    https://stackoverflow.com/questions/43060479/how-to-get-the-font-pixel-height-using-pil-imagefont
+    """
+    (getsize_width, baseline), (offset_x, offset_y) = font.font.getsize(word)
+    
+    """
+    svg transform string - empty if no rotation (text horizontal), otherwise contains rotate and translate numbers
+    """
+    svgTransform = ""    
+    
+    svgFill = ' fill="{}"'.format(color)    
+        
+    """
+    this is all it takes to transform x,y to svg space 
+    it was arrived at using the methods of computer graphics programmers
+    https://twitter.com/erkaman2/status/1104105232034861056
+    """
+    if orientation is None:
+        svgX = y - offset_x
+        svgY = x + ascent - offset_y      
+        
+    else:
+        svgX = y + ascent - offset_y
+        svgY = x + offset_x
+        svgTransform = ' transform="rotate(-90, {}, {}) translate({}, 0)"'.format(svgX, svgY, -getsize_width)
+
+    """
+    print SVG to standard output 
+    """
+    svg_str += ('<text x="{}" y="{}" font-size="{}"{}{}>{}</text>'.format(svgX, svgY, font_size, svgTransform, svgFill, word))
+  return svg_str + "</svg>"
+```
