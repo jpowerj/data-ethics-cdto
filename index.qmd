@@ -10,6 +10,7 @@ format:
   revealjs:
     output-file: "index.html"
     html-math-method: mathjax
+    cache: true
     slide-number: true
     scrollable: true
     link-external-icon: true
@@ -26,7 +27,12 @@ format:
       scale: 0.5
 ---
 
-# Привіт! {data-stack-name="Привіт!"}
+# <mark data-term="Привіт!">Hello!</mark> {data-stack-name="Привіт!"}
+
+## My Goal {.entities}
+
+* I want to provide some <mark data-term="інструменти">tools</mark> from <mark data-term="етичне управління даними">data ethics</mark>, for your <mark data-term="ящик для інструментів">toolbox</mark>
+* If one of the tools is not relevant, I hope another will be!
 
 ## Who Am I? How Can I Help You?
 
@@ -62,7 +68,7 @@ format:
 
 ![](images/eth_arms.svg){fig-align="center"}
 
-* Only know basic words from 1 year російською course 🙈 but I will try my best!
+* I only know the most basic <mark data-term="українські слова">words</mark> 🙈 but I will try my best!
 
 ## Data Ethics in Times of War {.smaller .crunch-title .crunch-img .crunch-th .crunch-td-last}
 
@@ -93,17 +99,16 @@ format:
 
 # Ethical Frameworks: Implicit and Explicit {data-stack-name="Ethical Frameworks"}
 
-* We are always using **ethical frameworks**, even when we don't realize it!
+* We are always using <mark data-term="етична теорія">**ethical frameworks**</mark>, even when we don't realize it!
 
 ## Cake Cutting
 
-* You and a friend are very hungry
-* You come across a tasty **cake**!
+* You and a friend are very <mark data-term="голодні.">hungry</mark>, and you come across a <mark data-term="смачний торт">tasty **cake**</mark>!
 * How do you divide it?
 
 ## Ethical Frameworks
 
-* Your instinct may be: divide **equally**, so that you and your friend are treated equally
+* Your instinct may be: divide <mark data-term="порівну">**equally**</mark>, so that you and your friend are treated equally
 * But... are you treated equally?
 * What if your friend is 10 times **hungrier**?
 * What if your stomach is sensitive to sugar, so you can't eat more than $1/4$?

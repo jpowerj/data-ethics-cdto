@@ -82,3 +82,34 @@
 .title-12 h2 {
     font-size: calc(1.2 * var(--r-heading2-size)) !important;
 }
+
+/* From displaCy-ENT. https://codepen.io/explosion/pen/xEpgKz */
+
+.entities {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+        
+mark {
+    line-height: 1 !important;
+    display: inline-block !important;
+    background: transparent !important;
+    border: 3px solid #7025ea !important;
+    // color: #7025ea !important;
+    padding-left: 0.35em !important;
+
+    &:after {
+        box-sizing: border-box !important;
+        content: attr(data-term);
+        line-height: 1 !important;
+        display: inline-block !important;
+        padding: 0.25em 0.35em !important;
+        margin: 0 0 0 0.35em !important;
+        color: white !important;
+        // background: #7025ea !important;
+        background: rgba(112, 37, 234, 1);
+        font-weight: bold !important;
+        font-size: 0.95em !important;
+    }
+}
+
