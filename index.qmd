@@ -401,6 +401,16 @@ $$
 </center>
 ```
 
+## Incremental Model
+
+* As a **Minimum Viable Product (MVP)**, first just consider the **non-constrained** optimization
+* Add in constraints incrementally---as you add, evaluate **feasibility** relative to **goals** (for example, how close can you get to MVP outcome?)
+* Iterative process $\implies$ **visual dashboards** can be crucially helpful!
+
+## Interactive Example
+
+* [ObservableJS Interactive Dashboard](https://observablehq.com/@jpowerj/resource-allocation-ukraine){target='_blank'}
+
 # Privacy-Preserving Computation {data-stack-name="Privacy"}
 
 ## Disclosure Avoidance {.crunch-title .crunch-ul .crunch-p}
