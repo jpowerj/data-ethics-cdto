@@ -9,6 +9,12 @@ date-format: "dddd, D MMMM YYYY"
 format:
   revealjs:
     output-file: "index.html"
+    include-in-header:
+      text: |
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+        <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js"></script>
+    favicon: "favicon.png"
     html-math-method: mathjax
     cache: true
     slide-number: true
@@ -397,9 +403,147 @@ $$
 
 # Privacy-Preserving Computation {data-stack-name="Privacy"}
 
+## Disclosure Avoidance {.crunch-title .crunch-ul .crunch-p}
+
+* 1990, 2000, and 2010 Census: "Data Swapping":
+
+> We inject "noise" into the data by swapping records for certain households with those from households with similar characteristics in a nearby area. The Census does not release information about its specific methods for swapping. While this <mark data-term="конфіденційність">confidentiality</mark> around swapping techniques is important to protect against disclosure, it means that the practice is <mark data-term="не є прозорим">not transparent</mark> to data users
+
+## The Death of Data Swapping
+
+* But... machine learning, neural networks, etc...
+
+> If traditional disclosure avoidance techniques were applied to the 2020 Census data, the amount of noise required to protect against new attacks would make census data unfit for most uses
+
 ## Differential Privacy
 
+* Implemented for the [**2020 US Census**](https://www2.census.gov/library/publications/decennial/2020/2020-census-disclosure-avoidance-handbook.pdf){target='_blank'}
 * The key idea: as people make more and more **queries** to your DB, your **response** gets less and less accurate
+
+## Real Data: селище Понорниця
+
+```{=html}
+<div id='ponornycka' style="height: 400px;"></div>
+<script src="assets/ponornycka.js"></script>
+```
+
+## Example with Real Data {.smaller}
+
+```{=html}
+<style>
+/* Table section sep */
+.tss td:nth-child(1), .tss td:nth-child(4), .tss td:nth-child(7), .tss td:nth-child(10) {
+  /* background-color: green; */
+  border-right: 2px solid darkgrey;
+}
+</style>
+<table class='text-90 tss'>
+<thead>
+<tr>
+  <th rowspan="2" align="center" style="vertical-align: middle;" class="trb">громада</th>
+  <th colspan="3" align="center" class="trb">True Population</th>
+  <th colspan="3" align="center" class="trb">Noise</th>
+  <th colspan="3" align="center" class="trb">Noisy Counts</th>
+  <th colspan="3" align="center">Post-Processed</th>
+</tr>
+<tr>
+  <th>&lt;18</th>
+  <th>18+</th>
+  <th class="trb">Total</th>
+  <th>&lt;18</th>
+  <th>18+</th>
+  <th class="trb">Total</th>
+  <th>&lt;18</th>
+  <th>18+</th>
+  <th class="trb">Total</th>
+  <th>&lt;18</th>
+  <th>18+</th>
+  <th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Зелена Поляна</td>
+  <td align="right">20</td>
+  <td align="right">57</td>
+  <td align="right">77</td>
+  <td align='right'><span class='pm-neutral'>0</span></td>
+  <td align='right'><span class='pm-subtract'>-4</span></td>
+  <td align='right'><span class='pm-add'>+2</span></td>
+  <td align='right'>20</td>
+  <td align='right'>53</td>
+  <td align='right'>(&ne;)79</td>
+  <td align='right'>23 (+3)</td>
+  <td align='right'>54 (+1)</td>
+  <td align='right'>77 (-2)</td>
+</tr>
+<tr>
+  <td>Рихли</td>
+  <td>30</td>
+  <td>82</td>
+  <td>112</td>
+  <td><span class='pm-subtract'>-3</span></td>
+  <td><span class='pm-add'>+2</span></td>
+  <td><span class='pm-add'>+3</span></td>
+  <td>27</td>
+  <td>84</td>
+  <td>115</td>
+  <td>28 (+1)</td>
+  <td>85 (+1)</td>
+  <td>113 (-2)</td>
+</tr>
+<tr>
+  <td>Великий Ліс</td>
+  <td>20</td>
+  <td>86</td>
+  <td>106</td>
+  <td><span class='pm-subtract'>-2</span></td>
+  <td><span class='pm-add'>+1</span></td>
+  <td><span class='pm-add'>+1</span></td>
+  <td>18</td>
+  <td>87</td>
+  <td>107</td>
+  <td>17 (-1)</td>
+  <td>87</td>
+  <td>104 (-3)</td>
+</tr>
+<tr>
+  <td>Розльоти</td>
+  <td>150</td>
+  <td>155</td>
+  <td>305</td>
+  <td><span class='pm-neutral'>0</span></td>
+  <td><span class='pm-add'>+2</span></td>
+  <td><span class='pm-neutral'>0</span></td>
+  <td>150</td>
+  <td>157</td>
+  <td>305</td>
+  <td>150</td>
+  <td>156 (-1)</td>
+  <td>306 (+1)</td>
+</tr>
+<tr>
+  <td align="right"><b>Total</b></td>
+  <td>220</td>
+  <td>380</td>
+  <td>600</td>
+  <td><span class='pm-subtract'>-5</span></td>
+  <td><span class='pm-add'>+1</span></td>
+  <td><span class='pm-add'>+6</span></td>
+  <td>215</td>
+  <td>381</td>
+  <td>606</td>
+  <td>218</td>
+  <td>382</td>
+  <td>600</td>
+</tr>
+</tbody>
+</table>
+```
+
+## Resources
+
+* Privacy: [Big Data and the Public Good](https://www.cambridge.org/core/books/privacy-big-data-and-the-public-good/1ACB10292B07EC30F071B4AD9650955C){target='_blank'}
 
 # Q & A
 

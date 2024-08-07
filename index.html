@@ -322,6 +322,9 @@
       margin-right: 0; 
     }
   </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -606,10 +609,153 @@ Our Example:
 <h1>Privacy-Preserving Computation</h1>
 
 </section>
+<section id="disclosure-avoidance" class="slide level2 crunch-title crunch-ul crunch-p">
+<h2>Disclosure Avoidance</h2>
+<ul>
+<li>1990, 2000, and 2010 Census: “Data Swapping”:</li>
+</ul>
+<blockquote>
+<p>We inject “noise” into the data by swapping records for certain households with those from households with similar characteristics in a nearby area. The Census does not release information about its specific methods for swapping. While this <mark data-term="конфіденційність">confidentiality</mark> around swapping techniques is important to protect against disclosure, it means that the practice is <mark data-term="не є прозорим">not transparent</mark> to data users</p>
+</blockquote>
+</section>
+<section id="the-death-of-data-swapping" class="slide level2">
+<h2>The Death of Data Swapping</h2>
+<ul>
+<li>But… machine learning, neural networks, etc…</li>
+</ul>
+<blockquote>
+<p>If traditional disclosure avoidance techniques were applied to the 2020 Census data, the amount of noise required to protect against new attacks would make census data unfit for most uses</p>
+</blockquote>
+</section>
 <section id="differential-privacy" class="slide level2">
 <h2>Differential Privacy</h2>
 <ul>
+<li>Implemented for the <a href="https://www2.census.gov/library/publications/decennial/2020/2020-census-disclosure-avoidance-handbook.pdf" target="_blank"><strong>2020 US Census</strong></a></li>
 <li>The key idea: as people make more and more <strong>queries</strong> to your DB, your <strong>response</strong> gets less and less accurate</li>
+</ul>
+</section>
+<section id="real-data-селище-понорниця" class="slide level2">
+<h2>Real Data: селище Понорниця</h2>
+<div id="ponornycka" style="height: 400px;"></div>
+<script src="assets/ponornycka.js"></script>
+</section>
+<section id="example-with-real-data" class="slide level2 smaller">
+<h2>Example with Real Data</h2>
+<style>
+/* Table section sep */
+.tss td:nth-child(1), .tss td:nth-child(4), .tss td:nth-child(7), .tss td:nth-child(10) {
+  /* background-color: green; */
+  border-right: 2px solid darkgrey;
+}
+</style>
+
+<table class="text-90 tss caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th rowspan="2" class="trb" data-quarto-table-cell-role="th" style="text-align: center; vertical-align: middle;">громада</th>
+<th colspan="3" class="trb" style="text-align: center;" data-quarto-table-cell-role="th">True Population</th>
+<th colspan="3" class="trb" style="text-align: center;" data-quarto-table-cell-role="th">Noise</th>
+<th colspan="3" class="trb" style="text-align: center;" data-quarto-table-cell-role="th">Noisy Counts</th>
+<th colspan="3" style="text-align: center;" data-quarto-table-cell-role="th">Post-Processed</th>
+</tr>
+<tr class="odd">
+<th style="text-align: right;" data-quarto-table-cell-role="th">&lt;18</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">18+</th>
+<th class="trb" style="text-align: right;" data-quarto-table-cell-role="th">Total</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">&lt;18</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">18+</th>
+<th class="trb" style="text-align: right;" data-quarto-table-cell-role="th">Total</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">&lt;18</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">18+</th>
+<th class="trb" style="text-align: right;" data-quarto-table-cell-role="th">Total</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">&lt;18</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">18+</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Зелена Поляна</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;"><span class="pm-neutral">0</span></td>
+<td style="text-align: right;"><span class="pm-subtract">-4</span></td>
+<td style="text-align: right;"><span class="pm-add">+2</span></td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">(≠)79</td>
+<td style="text-align: right;">23 (+3)</td>
+<td style="text-align: right;">54 (+1)</td>
+<td style="text-align: right;">77 (-2)</td>
+</tr>
+<tr class="even">
+<td>Рихли</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;"><span class="pm-subtract">-3</span></td>
+<td style="text-align: right;"><span class="pm-add">+2</span></td>
+<td style="text-align: right;"><span class="pm-add">+3</span></td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: right;">115</td>
+<td style="text-align: right;">28 (+1)</td>
+<td style="text-align: right;">85 (+1)</td>
+<td style="text-align: right;">113 (-2)</td>
+</tr>
+<tr class="odd">
+<td>Великий Ліс</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">106</td>
+<td style="text-align: right;"><span class="pm-subtract">-2</span></td>
+<td style="text-align: right;"><span class="pm-add">+1</span></td>
+<td style="text-align: right;"><span class="pm-add">+1</span></td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">17 (-1)</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">104 (-3)</td>
+</tr>
+<tr class="even">
+<td>Розльоти</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">155</td>
+<td style="text-align: right;">305</td>
+<td style="text-align: right;"><span class="pm-neutral">0</span></td>
+<td style="text-align: right;"><span class="pm-add">+2</span></td>
+<td style="text-align: right;"><span class="pm-neutral">0</span></td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">157</td>
+<td style="text-align: right;">305</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">156 (-1)</td>
+<td style="text-align: right;">306 (+1)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>Total</strong></td>
+<td style="text-align: right;">220</td>
+<td style="text-align: right;">380</td>
+<td style="text-align: right;">600</td>
+<td style="text-align: right;"><span class="pm-subtract">-5</span></td>
+<td style="text-align: right;"><span class="pm-add">+1</span></td>
+<td style="text-align: right;"><span class="pm-add">+6</span></td>
+<td style="text-align: right;">215</td>
+<td style="text-align: right;">381</td>
+<td style="text-align: right;">606</td>
+<td style="text-align: right;">218</td>
+<td style="text-align: right;">382</td>
+<td style="text-align: right;">600</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="resources" class="slide level2">
+<h2>Resources</h2>
+<ul>
+<li>Privacy: <a href="https://www.cambridge.org/core/books/privacy-big-data-and-the-public-good/1ACB10292B07EC30F071B4AD9650955C" target="_blank">Big Data and the Public Good</a></li>
 </ul>
 </section></section>
 <section id="q-a" class="title-slide slide level1 center">
