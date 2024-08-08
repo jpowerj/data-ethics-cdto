@@ -596,10 +596,14 @@ AI = Shtuchnyy intelekt
 
 :::
 
+## Privacy Tradeoff {.crunch-title}
+
+![Figure 1.3: "The Accuracy-Privacy Loss Tradeoff", from US Census Bureau (2021), [*Disclosure Avoidance for the 2020 Census: An Introduction*](https://www2.census.gov/library/publications/decennial/2020/2020-census-disclosure-avoidance-handbook.pdf){target='_blank'}](images/tradeoff.svg){fig-align="center"}
+
 ## Differential Privacy
 
 * Implemented for the [**2020 US Census**](https://www2.census.gov/library/publications/decennial/2020/2020-census-disclosure-avoidance-handbook.pdf){target='_blank'}
-* The key idea: as people make more and more **queries** to your DB, your **response** gets less and less accurate
+* Key idea: Choose $\varepsilon_i$ based on how much you **trust** person $i$, who wants to see your data. 
 
 ![Figure 8.1: "The Privacy-Loss Budget (Epsilon) Acts as a Dial on the Level of Noise", from US Census Bureau (2021), [*Disclosure Avoidance for the 2020 Census: An Introduction*](https://www2.census.gov/library/publications/decennial/2020/2020-census-disclosure-avoidance-handbook.pdf){target='_blank'}](images/census_epsilon_crop.svg){fig-align="center"}
 
@@ -736,10 +740,10 @@ AI = Shtuchnyy intelekt
 * If noise values $\nu$ drawn i.i.d. from **Laplace distribution** (pdf):
 
 $$
-\text{Lap}(x; \varepsilon) = \frac{1}{2\varepsilon}\exp\mkern-2.5mu\left[-\frac{|x|}{\varepsilon}\right]
+M(D) \triangleq \text{Lap}(x; \varepsilon) = \frac{1}{2\varepsilon}\exp\mkern-2.5mu\left[-\frac{|x|}{\varepsilon}\right]
 $$
 
-* Can **mathematically guarantee** $\varepsilon$-differential privacy!
+* Can **mathematically guarantee** $\varepsilon$-differential privacy!^[Here $D$ and $D'$ are datasets with and without a given person!]
 
 $$
 \Pr\left[M(D) \in S\right] \leq e^\varepsilon \times \Pr\mkern-2.5mu\left[M(D') \in S\right]
