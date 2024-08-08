@@ -436,6 +436,7 @@ $$
 ::: {.column width="50%"}
 
 * Euclidean / "Straight line" distance **not always the "right" measure!**
+* [Allocation Challenge 2: Distance-Based Decay](https://observablehq.com/@jpowerj/resource-allocation-distances)
 
 :::
 ::: {.column width="50%"}
