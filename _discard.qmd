@@ -117,3 +117,56 @@ def to_svg_custom(cloud_obj):
 </center>
 
 :::
+
+## Observable:
+
+// D3.js version
+// chart = {
+//   const svg = d3.create("svg")
+//        .attr("viewBox", [0, 0, 975, 610]);
+
+//   svg.append("g")
+//       .attr("transform", "translate(610,20)")
+//       .append(() => legend({color, title: regionDataMap.title, width: 260, tickFormat: ".0f"}));
+
+//   svg.append("g")
+//     .selectAll("path")
+//     .data(regions.features)
+//     .join("path")
+//       .attr("fill", d => color(regionDataMap.get(d.properties.ISO_1)))
+//       .attr("d", d3.geoPath())
+//     .append("title")
+//       .text(d => `${d.properties.NAME_1}, ${d.properties.ISO_1}
+// ${format(regionDataMap.get(d.properties.ISO_1))}`);
+
+//   return svg.node();
+// }
+
+// Uncomment for Leaflet version
+// {
+//   const container = yield htl.html`<div style="height: 500px;">`;
+//   const map = L.map(container);
+//   const layer = L.geoJSON(states).addTo(map);
+//   map.fitBounds(layer.getBounds(), {maxZoom: 9});
+//   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+//     attribution: "© <a href=https://www.openstreetmap.org/copyright>OpenStreetMap</a> contributors"
+//   }).addTo(map);
+// }
+
+// Test code for inputGrid
+
+# viewof groupVals = inputGrid(
+#   [
+#     [Inputs.range(), Inputs.range()],
+#     [Inputs.range(), Inputs.range()],
+#   ],
+#   [
+#     ['a','b'],
+#     ['c','d'],
+#   ],
+#   { objOnly: true }
+# )
+
+escaped = ({
+  Черкаська: '\u0427\u0435\u0440\u043A\u0430\u0441\u044C\u043A\u0430',
+});

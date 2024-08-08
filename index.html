@@ -29,7 +29,27 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -617,6 +637,54 @@ Our Example:
 <ul>
 <li><a href="https://observablehq.com/@jpowerj/resource-allocation-ukraine" target="_blank">ObservableJS Interactive Dashboard</a></li>
 </ul>
+</section>
+<section id="problem-1-divisibility" class="slide level2 crunch-title">
+<h2>Problem 1: Divisibility</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Can we infinitely <strong>split</strong> our resources?</li>
+<li><span class="math inline">\(1/2\)</span> of a gas mask doesn’t help us! ☠️</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/tennis_lifehack.jpeg" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="problem-2-distance-metrics" class="slide level2 crunch-title">
+<h2>Problem 2: Distance Metrics</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Euclidean / “Straight line” distance <strong>not always the “right” measure!</strong></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/medical_distances.jpg" style="width:75.0%"></p>
+<figcaption>From <span class="citation" data-cites="shahid_comparison_2009">Shahid et al. (<a href="#/references-resources" role="doc-biblioref" onclick="">2009</a>)</span></figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="problem-3-capabilities" class="slide level2 crunch-title">
+<h2>Problem 3: Capabilities</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>How effectively can people <strong>“convert”</strong> <em>resource</em> <span class="math inline">\(\leadsto\)</span> <em>utility</em>?</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/sen_capabilities.jpg" style="width:65.0%"></p>
+<figcaption><span class="citation" data-cites="sen_commodities_1985">Sen (<a href="#/references-resources" role="doc-biblioref" onclick="">1985</a>)</span></figcaption>
+</figure>
+</div>
+</div></div>
 </section></section>
 <section>
 <section id="privacy-preserving-computation" class="title-slide slide level1 center" data-stack-name="Privacy">
@@ -766,11 +834,45 @@ Our Example:
 </tbody>
 </table>
 </section>
-<section id="resources" class="slide level2">
-<h2>Resources</h2>
+<section id="the-magic-noise" class="slide level2 crunch-title crunch-ul crunch-math crunch-p math-80">
+<h2>The Magic (Noise!)</h2>
 <ul>
-<li>Privacy: <a href="https://www.cambridge.org/core/books/privacy-big-data-and-the-public-good/1ACB10292B07EC30F071B4AD9650955C" target="_blank">Big Data and the Public Good</a></li>
+<li>If noise values <span class="math inline">\(\nu\)</span> drawn i.i.d. from <strong>Laplace distribution</strong> (pdf):</li>
 </ul>
+<p><span class="math display">\[
+\text{Lap}(x; \varepsilon) = \frac{1}{2\varepsilon}\exp\mkern-2.5mu\left[-\frac{|x|}{\varepsilon}\right]
+\]</span></p>
+<ul>
+<li>Can <strong>mathematically guarantee</strong> <span class="math inline">\(\varepsilon\)</span>-differential privacy!</li>
+</ul>
+<p><span class="math display">\[
+\Pr\left[M(D) \in S\right] \leq e^\varepsilon \times \Pr\mkern-2.5mu\left[M(D') \in S\right]
+\]</span></p>
+<ul>
+<li>Can <strong>quantify</strong> amount of privacy loss <span class="math inline">\(\mathcal{L}(\gamma)\)</span> from observing <span class="math inline">\(\gamma\)</span></li>
+</ul>
+<p><span class="math display">\[
+\mathcal{L}(\gamma) = \ln\left[\frac{\Pr[M(D) = \gamma]}{\Pr[M (D') = \gamma}\right]
+\]</span></p>
+</section>
+<section id="the-metaphor" class="slide level2">
+<h2>The Metaphor</h2>
+
+<img data-src="images/seurat.jpg" class="r-stretch quarto-figure-center"><p class="caption">Seurat, <em>A Sunday Afternoon on the Island of La Grande Jatte</em>, <a href="https://commons.wikimedia.org/wiki/File:A_Sunday_on_La_Grande_Jatte,_Georges_Seurat,_1884.jpg" target="_blank">Wikimedia Commons</a></p></section>
+<section id="references-resources" class="slide level2 smaller scrollable">
+<h2>References / Resources</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-lane_privacy_2014" class="csl-entry" role="listitem">
+Lane, Julia, Victoria Stodden, Stefan Bender, and Helen Nissenbaum. 2014. <em>Privacy, <span>Big Data</span>, and the <span>Public Good</span></em>. Cambridge University Press.
+</div>
+<div id="ref-sen_commodities_1985" class="csl-entry" role="listitem">
+Sen, Amartya. 1985. <em>Commodities and <span>Capabilities</span></em>. OUP India.
+</div>
+<div id="ref-shahid_comparison_2009" class="csl-entry" role="listitem">
+Shahid, Rizwan, Stefania Bertazzon, Merril L. Knudtson, and William A. Ghali. 2009. <span>“Comparison of Distance Measures in Spatial Analytical Modeling for Health Service Planning.”</span> <em>BMC Health Services Research</em> 9 (1): 200. <a href="https://doi.org/10.1186/1472-6963-9-200">https://doi.org/10.1186/1472-6963-9-200</a>.
+</div>
+</div>
+<!-- * Privacy: [Big Data and the Public Good](https://www.cambridge.org/core/books/privacy-big-data-and-the-public-good/1ACB10292B07EC30F071B4AD9650955C){target='_blank'} -->
 </section></section>
 <section id="q-a" class="title-slide slide level1 center">
 <h1>Q &amp; A</h1>

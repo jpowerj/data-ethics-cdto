@@ -24,6 +24,9 @@ format:
     theme: [default, 'jjslides.scss']
     footer: "Shaping the Digital Future: Data Ethics"
     logo: "images/DSAN_Combined.png"
+    bibliography: "cdto.bib"
+    nocite: |
+      @*
     revealjs-plugins:
       - simplemenu
     simplemenu:
@@ -411,6 +414,52 @@ $$
 
 * [ObservableJS Interactive Dashboard](https://observablehq.com/@jpowerj/resource-allocation-ukraine){target='_blank'}
 
+## Problem 1: Divisibility {.crunch-title}
+
+::: {.columns}
+::: {.column width="50%"}
+
+* Can we infinitely **split** our resources?
+* $1/2$ of a gas mask doesn't help us! ☠️
+
+:::
+::: {.column width="50%"}
+
+![](images/tennis_lifehack.jpeg){fig-align="center"}
+
+:::
+:::
+
+## Problem 2: Distance Metrics {.crunch-title}
+
+::: {.columns}
+::: {.column width="50%"}
+
+* Euclidean / "Straight line" distance **not always the "right" measure!**
+
+:::
+::: {.column width="50%"}
+
+![From @shahid_comparison_2009](images/medical_distances.jpg){fig-align="center" width="75%"}
+
+:::
+:::
+
+## Problem 3: Capabilities {.crunch-title}
+
+::: {.columns}
+::: {.column width="50%"}
+
+* How effectively can people **"convert"** *resource* $\leadsto$ *utility*?
+
+:::
+::: {.column width="50%"}
+
+![@sen_commodities_1985](images/sen_capabilities.jpg){fig-align="center" width="65%"}
+
+:::
+:::
+
 # Privacy-Preserving Computation {data-stack-name="Privacy"}
 
 ## Disclosure Avoidance {.crunch-title .crunch-ul .crunch-p}
@@ -551,9 +600,36 @@ $$
 </table>
 ```
 
-## Resources
+## The Magic (Noise!) {.crunch-title .crunch-ul .crunch-math .crunch-p .math-80}
 
-* Privacy: [Big Data and the Public Good](https://www.cambridge.org/core/books/privacy-big-data-and-the-public-good/1ACB10292B07EC30F071B4AD9650955C){target='_blank'}
+* If noise values $\nu$ drawn i.i.d. from **Laplace distribution** (pdf):
+
+$$
+\text{Lap}(x; \varepsilon) = \frac{1}{2\varepsilon}\exp\mkern-2.5mu\left[-\frac{|x|}{\varepsilon}\right]
+$$
+
+* Can **mathematically guarantee** $\varepsilon$-differential privacy!
+
+$$
+\Pr\left[M(D) \in S\right] \leq e^\varepsilon \times \Pr\mkern-2.5mu\left[M(D') \in S\right]
+$$
+
+* Can **quantify** amount of privacy loss $\mathcal{L}(\gamma)$ from observing $\gamma$
+
+$$
+\mathcal{L}(\gamma) = \ln\left[\frac{\Pr[M(D) = \gamma]}{\Pr[M (D') = \gamma}\right]
+$$
+
+## The Metaphor
+
+![Seurat, *A Sunday Afternoon on the Island of La Grande Jatte*, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:A_Sunday_on_La_Grande_Jatte,_Georges_Seurat,_1884.jpg){target='_blank'}](images/seurat.jpg){fig-align="center"}
+
+## References / Resources
+
+::: {#refs}
+:::
+
+<!-- * Privacy: [Big Data and the Public Good](https://www.cambridge.org/core/books/privacy-big-data-and-the-public-good/1ACB10292B07EC30F071B4AD9650955C){target='_blank'} -->
 
 # Q & A
 

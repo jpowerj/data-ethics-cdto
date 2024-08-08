@@ -1,6 +1,10 @@
 /*-- scss:defaults --*/
 
 /*-- scss:rules --*/
+figcaption {
+    text-align: center;
+}
+
 .center-logo {
     // display: block;
     position: fixed;
@@ -21,6 +25,11 @@
 .crunch-img img {
     margin-top: 3px !important;
     margin-bottom: 3px !important;
+}
+
+.crunch-math mjx-container {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
 }
 
 .crunch-p p {
