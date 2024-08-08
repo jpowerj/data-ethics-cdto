@@ -41,7 +41,14 @@ format:
 ## My Goal {.entities}
 
 * I want to provide some <mark data-term="інструменти">tools</mark> from <mark data-term="етичне управління даними">data ethics</mark>, for your <mark data-term="ящик для інструментів">toolbox</mark>
-* If one of the tools is not relevant, I hope another will be!
+* If one of the tools is <mark data-term="не актуально">not relevant</mark>, I hope another will be!
+* If one of the tools is <mark data-term="дуже актуально">very relevant</mark>, I can provide more resources (books, articles) for you!
+
+::: {.notes}
+
+етичне управління даними = etychne upravlinnya danymy = ethical data management
+
+:::
 
 ## Who Am I? How Can I Help You?
 
@@ -69,7 +76,8 @@ format:
 </table>
 ```
 
-* Cross-listed course: [Data Ethics and Policy](https://jjacobs.me/dsan5450/){target='_blank'} (All slides/lectures available at that link!)
+* Cross-listed course: [DSAN 5450: Data Ethics and Policy](https://jjacobs.me/dsan5450/){target='_blank'}
+  * All materials online + open-source, available at that link!
 
 ## Dissertation: "Our Word is Our Weapon" {.smaller .crunch-img .title-12}
 
@@ -108,7 +116,13 @@ format:
 
 # Ethical Frameworks: Implicit and Explicit {data-stack-name="Ethical Frameworks"}
 
-* We are always using <mark data-term="етична теорія">**ethical frameworks**</mark>, even when we don't realize it!
+* We are always using <mark data-term="етичні теорії">**ethical frameworks**</mark>, even when we don't realize it!
+
+::: {.notes}
+
+Етичні теорії = Etychni teoriyi = Ethical theories
+
+:::
 
 ## Cake Cutting
 
@@ -121,6 +135,76 @@ format:
 * But... are you treated equally?
 * What if your friend is 10 times **hungrier**?
 * What if your stomach is sensitive to sugar, so you can't eat more than $1/4$?
+
+::: {.notes}
+
+порівну = porivnu = equally
+
+:::
+
+## Math to the Rescue... For Now!
+
+For $N = 2$, simple **mechanism** for **envy-free** division:
+
+1. Анастасія cuts the cake into **2 pieces** however she wants
+2. Вероніка chooses which piece to eat
+3. ...Давай розпочнемо цю вечірку!^[If this is wrong... it's [this guy](https://www.tiktok.com/@learnukrainianwithme/video/7328868603602668842){target='_blank'}'s fault]
+
+::: {.notes}
+
+Davay rozpochnemo tsyu vechirku = let's get this party started!
+
+:::
+
+## Ethical Complexity: 3 People {.crunch-title}
+
+::: {.columns}
+::: {.column width="50%"}
+
+![](images/cake_cutting_left.jpeg){fig-align="center"}
+
+:::
+::: {.column width="50%"}
+
+![](images/cake_cutting_right.jpeg){fig-align="center"}
+
+:::
+:::
+
+::: {.aside}
+
+*Quanta* Magazine, 6 Oct 2016, ["How to Cut Cake Fairly and Finally Eat It Too"](https://www.quantamagazine.org/new-algorithm-solves-cake-cutting-problem-20161006/){target='_blank'}
+
+:::
+
+## Ethical Complexity: $n$ People {.crunch-title .crunch-blockquote .crunch-p .crunch-img}
+
+::: {.text-90}
+
+> We consider the well-studied cake cutting problem in which the goal is to find an envy-free allocation based on queries from $n$ agents. The problem has received attention in computer science, mathematics,
+and economics. It has been a major open problem whether there exists a discrete bounded envy-free
+protocol. We resolve the problem with a discrete bounded envy-free protocol for any number of agents. The maximum number of queries required by the protocol is $n^{n^{n^{n^{n^n}}}}$. [@aziz_discrete_2016]
+
+:::
+
+::: {.columns}
+::: {.column width="50%"}
+
+![](images/cake_cutting_google.jpeg){fig-align="center"}
+
+:::
+::: {.column width="50%"}
+
+![](images/cake_cutting_google_uk.jpeg){fig-align="center"}
+
+:::
+:::
+
+::: {.notes}
+
+nevyznachenyy (nevoyznachenyy) = unspecified
+
+:::
 
 ## Ethical Framework Implicit in Learning "Who You Are"! {.smaller .crunch-title .crunch-quarto-figure}
 
@@ -191,7 +275,7 @@ display_wordcloud(bio_str_uk)
 :::
 :::
 
-* How might this be **biased**, relative to **equal** contribution from everyone?
+* How might this be <mark data-term='несправедливий'>biased</mark>, if we want <mark data-term='рівна частка'>equal contribution</mark>?
 
 ## Now With Fake Jeff Bio {.crunch-title .crunch-img}
 
@@ -332,7 +416,7 @@ plt.axis("off")
 :::
 :::
 
-## Equality of What? / Рівність... Чого? {.crunch-title .crunch-ul .math-80}
+## <mark data-term="Рівність Чого?">Equality of What?</mark> {.crunch-title .crunch-ul .math-80 .title-09}
 
 * Is $\omega_i = 1/N$ the "correct" choice?
 * Should we ensure **each person/ministry gets $\geq 1$ big word**
@@ -363,12 +447,18 @@ Our Example:
 
 $$
 \begin{align*}
-\max_{\omega \mkern1.0mu \in \mkern1.0mu [0,1]^N} \; & f(\omega) = \textstyle\sum_{i=0}^{N}u_i(\omega) \\
+\max_{\omega \mkern1.0mu \in \mkern1.0mu [0,1]^N} \; & f(\omega) = \textstyle\sum_{i=0}^{N}\omega_i u_i \\
 \text{subject to } &\textstyle\sum_{i=0}^{N}\omega_i = 1
 \end{align*}
 $$
 
 :::
+:::
+
+::: {.notes}
+
+Рівність чого? = Rivnist' choho?
+
 :::
 
 # Resource Allocation {data-stack-name="Resource Allocation"}
@@ -391,26 +481,26 @@ $$
 :::
 :::
 
-## Now in Україна
-
-```{=html}
-<style>
-.embed-container {position: relative; padding-bottom: 67%; height: 0; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}
-</style>
-<center>
-<div class="embed-container">
-  <iframe width="600" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="Ukraine_Regions" src="//georgetownuniv.maps.arcgis.com/apps/Embed/index.html?webmap=50668b6cb4664b79948817100400b0dc&extent=19.2882,43.8227,44.7765,53.1106&home=true&zoom=true&previewImage=false&scale=true&disable_scroll=true&theme=light"></iframe>
-</div>
-</center>
-```
-
 ## Incremental Model
 
-* As a **Minimum Viable Product (MVP)**, first just consider the **non-constrained** optimization
+* As a <mark data-term="найпростіший">Minimum Viable Product (MVP)</mark>, first just consider the **non-constrained** optimization
 * Add in constraints incrementally---as you add, evaluate **feasibility** relative to **goals** (for example, how close can you get to MVP outcome?)
-* Iterative process $\implies$ **visual dashboards** can be crucially helpful!
+* Iterative process $\implies$ <mark data-term="візуалізація">visualization</mark> can be crucially helpful!
 
-## Interactive Example
+::: {.notes}
+
+vizualizatsiya
+
+:::
+
+## Sidebar: Україна in ArcGIS
+
+* [Regions of Україна on Georgetown ArcGIS server](https://georgetownuniv.maps.arcgis.com/apps/mapviewer/index.html?webmap=50668b6cb4664b79948817100400b0dc){target='_blank'}
+* Full-on GIS can take several weeks to get used to, so we'll use a simpler approach here (using **ObservableJS**)
+* But ArcGIS with Ukraine maps will be used for student assignment(s) in [DSAN 6750 / PPOL 6805: **Geographic Information Systems**](https://jjacobs.me/dsan6750){target='_blank'} (Fall 2024)
+  * All materials online and open-source, if you want to follow along!
+
+# Interactive Examples!
 
 * [ObservableJS Interactive Dashboard](https://observablehq.com/@jpowerj/resource-allocation-ukraine){target='_blank'}
 
@@ -419,7 +509,7 @@ $$
 ::: {.columns}
 ::: {.column width="50%"}
 
-* Can we infinitely **split** our resources?
+* Can we <mark data-term="розділяти">split</mark> our resource infinitely?
 * $1/2$ of a gas mask doesn't help us! ☠️
 
 :::
@@ -428,6 +518,12 @@ $$
 ![](images/tennis_lifehack.jpeg){fig-align="center"}
 
 :::
+:::
+
+::: {.notes}
+
+rozdilyaty
+
 :::
 
 ## Problem 2: Distance Metrics {.crunch-title}
@@ -446,17 +542,21 @@ $$
 :::
 :::
 
-## Problem 3: Capabilities {.crunch-title}
+## Problem 3: Capabilities {.crunch-title .crunch-ul .crunch-img .smaller}
 
 ::: {.columns}
-::: {.column width="50%"}
+::: {.column width="60%"}
 
-* How effectively can people **"convert"** *resource* $\leadsto$ *utility*?
+* How effectively can people **convert** <mark data-term="ресурси">resources</mark> $\leadsto$ <mark data-term="Корисність">utility</mark>?
+* Key example: <mark data-term="харчування">nutrition</mark> during <mark data-term="вагітність">pregnancy</mark>
+* [Johns Hopkins Medicine](https://www.hopkinsmedicine.org/health/wellness-and-prevention/nutrition-during-pregnancy){target='_blank'}: **300** <mark data-term="калорій більше">more calories</mark> per day
+
+![[Oxfam International, 3 Apr 2024](https://www.oxfam.org/en/press-releases/people-northern-gaza-forced-survive-245-calories-day-less-can-beans-oxfam){target='_blank'}](images/gaza_calories.jpeg){fig-align="center"}
 
 :::
-::: {.column width="50%"}
+::: {.column width="40%"}
 
-![@sen_commodities_1985](images/sen_capabilities.jpg){fig-align="center" width="65%"}
+![@sen_commodities_1985](images/sen_capabilities.jpg){fig-align="center" width="75%"}
 
 :::
 :::
@@ -467,18 +567,41 @@ $$
 
 * 1990, 2000, and 2010 Census: "Data Swapping":
 
-> We inject "noise" into the data by swapping records for certain households with those from households with similar characteristics in a nearby area. The Census does not release information about its specific methods for swapping. While this <mark data-term="конфіденційність">confidentiality</mark> around swapping techniques is important to protect against disclosure, it means that the practice is <mark data-term="не є прозорим">not transparent</mark> to data users
+> We inject "noise" into the data by swapping records for certain households with those from households with similar characteristics in a nearby area. The Census does not release information about its specific methods for swapping. While this <mark data-term="конфіденційність">confidentiality</mark> around swapping techniques is important to protect against disclosure, it means that the practice is <mark data-term="не прозорий">not transparent</mark> to data users
+
+::: {.notes}
+
+konfidentsiynistʹ, ne prozoryy
+
+:::
 
 ## The Death of Data Swapping
 
-* But... machine learning, neural networks, etc...
+* But... Штучний інтелект, Великі дані, etc... 🤖
 
-> If traditional disclosure avoidance techniques were applied to the 2020 Census data, the amount of noise required to protect against new attacks would make census data unfit for most uses
+> If traditional disclosure avoidance techniques were applied to the 2020 Census data, the **amount of noise required to protect** against **new attacks** would make census data **unfit** for most uses
+
+$\implies$ We need a framework for **quantifying** "acceptable" privacy loss (tradeoff!)
+
+::: {.notes}
+
+AI = Shtuchnyy intelekt
+
+:::
 
 ## Differential Privacy
 
 * Implemented for the [**2020 US Census**](https://www2.census.gov/library/publications/decennial/2020/2020-census-disclosure-avoidance-handbook.pdf){target='_blank'}
 * The key idea: as people make more and more **queries** to your DB, your **response** gets less and less accurate
+
+![Figure 8.1: "The Privacy-Loss Budget (Epsilon) Acts as a Dial on the Level of Noise", from US Census Bureau (2021), [*Disclosure Avoidance for the 2020 Census: An Introduction*](https://www2.census.gov/library/publications/decennial/2020/2020-census-disclosure-avoidance-handbook.pdf){target='_blank'}](images/census_epsilon_crop.svg){fig-align="center"}
+
+## Why Can't We Just Restrict Queries to Aggregated Statistics?
+
+*The answer:* **Differencing Attacks** 😰
+
+* Query 1: Number of народних депутатів in Верховна Рада with <mark data-term="захворювання">disease</mark> $X$
+* Query 2: Number of народних депутатів in Верховна Рада, except Голова, with <mark data-term="захворювання">disease</mark> $X$
 
 ## Real Data: селище Понорниця
 
@@ -618,7 +741,7 @@ $$
 * Can **quantify** amount of privacy loss $\mathcal{L}(\gamma)$ from observing $\gamma$
 
 $$
-\mathcal{L}(\gamma) = \ln\left[\frac{\Pr[M(D) = \gamma]}{\Pr[M (D') = \gamma}\right]
+\mathcal{L}(\gamma) = \ln\left[\frac{\Pr[M(D) = \gamma]}{\Pr[M (D') = \gamma]}\right]
 $$
 
 ## The Metaphor
@@ -635,3 +758,15 @@ $$
 # Q & A
 
 # Thank You!
+
+# Appendix Slides
+
+## Sensitivity {.smaller}
+
+> Consider a real-valued function $f$. The (worst-case, or global) sensitivity of $f$ is the maximum absolute value by which the addition or deletion of a single database row can change the value of $f$:
+
+$$
+\Delta f = \max_{D, D'}|f(D) - f(D')|
+$$
+
+> Queries of the form "How many people in the database are over six feet tall?” have sensitivity $\Delta f = 1$, since the presence or absence of any individual in $D$ can affect the true answer by at most 1. Thus, the Laplace mechanism returns the true count perturbed by a random draw from $\text{Lap}(x; 1/\varepsilon)$. [@dwork_differential_2014]
