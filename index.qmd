@@ -468,7 +468,7 @@ $$
 ::: {.columns}
 ::: {.column width="50%"}
 
-* Using **GIS** to allocate **mine defusal teams** to regions of Indochina mined by the US
+* Using [**GIS**](https://www.esriuk.com/en-gb/map-gallery/vietnam-bombing){target='_blank'} to allocate **mine defusal teams** to regions of Indochina mined by the US
 * What information do we need about each region?
   * Absolute population? Population density? Mines per person?
   * Can equipment be transported there?
@@ -476,7 +476,7 @@ $$
 :::
 ::: {.column width="50%"}
 
-![](images/indochina.png){fig-align="center" width="90%"}
+![From @robert_heart_2016](images/indochina.png){fig-align="center" width="90%"}
 
 :::
 :::
@@ -548,7 +548,8 @@ rozdilyaty
 ::: {.column width="60%"}
 
 * How effectively can people **convert** <mark data-term="ресурси">resources</mark> $\leadsto$ <mark data-term="Корисність">utility</mark>?
-* Key example: <mark data-term="харчування">nutrition</mark> during <mark data-term="вагітність">pregnancy</mark>
+* Digital: **internet** <mark data-term="постійність">availability</mark>
+* Physical: <mark data-term="харчування">nutrition</mark> during <mark data-term="вагітність">pregnancy</mark>
 * [Johns Hopkins Medicine](https://www.hopkinsmedicine.org/health/wellness-and-prevention/nutrition-during-pregnancy){target='_blank'}: **300** <mark data-term="калорій більше">more calories</mark> per day
 
 ![[Oxfam International, 3 Apr 2024](https://www.oxfam.org/en/press-releases/people-northern-gaza-forced-survive-245-calories-day-less-can-beans-oxfam){target='_blank'}](images/gaza_calories.jpeg){fig-align="center"}
@@ -559,6 +560,12 @@ rozdilyaty
 ![@sen_commodities_1985](images/sen_capabilities.jpg){fig-align="center" width="75%"}
 
 :::
+:::
+
+::: {.notes}
+
+постійність = postiynistʹ
+
 :::
 
 # Privacy-Preserving Computation {data-stack-name="Privacy"}
@@ -738,7 +745,7 @@ $$
 \Pr\left[M(D) \in S\right] \leq e^\varepsilon \times \Pr\mkern-2.5mu\left[M(D') \in S\right]
 $$
 
-* Can **quantify** amount of privacy loss $\mathcal{L}(\gamma)$ from observing $\gamma$
+* Can **quantify** <mark data-term="втрата приватності">privacy loss</mark> $\mathcal{L}(\gamma)$ from observing $\gamma$:
 
 $$
 \mathcal{L}(\gamma) = \ln\left[\frac{\Pr[M(D) = \gamma]}{\Pr[M (D') = \gamma]}\right]
