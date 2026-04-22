@@ -1,8 +1,22 @@
 /*-- scss:defaults --*/
+$font-family-sans-serif: "Computer Modern Sans",
+sans-serif !default;
 
 /*-- scss:rules --*/
+body {
+    font-family: "Computer Modern Sans", sans-serif;
+}
+
 figcaption {
     text-align: center;
+}
+
+.reveal .title {
+    font-size: 200% !important;
+}
+
+.reveal .subtitle {
+    font-size: 90% !important;
 }
 
 .center-logo {
@@ -69,6 +83,10 @@ figcaption {
     z-index: 2;
 }
 
+details {
+    margin-bottom: 0px !important;
+}
+
 /* From displaCy-ENT. https://codepen.io/explosion/pen/xEpgKz */
 .entities {
     box-sizing: border-box;
@@ -119,6 +137,7 @@ mark {
 .math-80 .math.display {
     font-size: 80% !important;
 }
+
 .math-90 .math.display {
     font-size: 90% !important;
 }

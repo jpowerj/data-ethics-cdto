@@ -31,6 +31,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     /* CSS for citations */
     div.csl-bib-body { }
     div.csl-entry {
@@ -51,7 +117,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-8f75f4a0a00d0beff485b264e17089e3.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-c72d286e2d2b516ff8aabb44f86d0d7d.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -145,7 +211,7 @@
       margin-right: 0; 
     }
   </style>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js"></script>
 </head>
@@ -387,11 +453,58 @@ Jeff Jacobs
           display:block!important;
       }</style></aside>
 </section>
-<section id="ethical-framework-implicit-in-learning-who-you-are" class="slide level2 smaller crunch-title crunch-quarto-figure">
+<section id="ethical-framework-implicit-in-learning-who-you-are" class="slide level2 smaller crunch-title title-09 crunch-quarto-figure">
 <h2>Ethical Framework Implicit in Learning “Who You Are”!</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div id="cell-orig-wordcloud" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="im">import</span> spacy</span>
+<span id="cb1-2"><a href=""></a>nlp <span class="op">=</span> {</span>
+<span id="cb1-3"><a href=""></a>  <span class="st">'en'</span>: spacy.load(<span class="st">"en_core_web_sm"</span>),</span>
+<span id="cb1-4"><a href=""></a>  <span class="st">'uk'</span>: spacy.load(<span class="st">"uk_core_news_sm"</span>)</span>
+<span id="cb1-5"><a href=""></a>}</span>
+<span id="cb1-6"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-7"><a href=""></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-8"><a href=""></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-9"><a href=""></a><span class="im">from</span> wordcloud <span class="im">import</span> WordCloud</span>
+<span id="cb1-10"><a href=""></a>portfolio_df <span class="op">=</span> pd.read_csv(<span class="st">"Student_portfolios.csv"</span>)</span>
+<span id="cb1-11"><a href=""></a>portfolio_df <span class="op">=</span> portfolio_df[<span class="op">~</span>pd.isna(portfolio_df[<span class="st">'Bio'</span>])].copy()</span>
+<span id="cb1-12"><a href=""></a>bio_list_en <span class="op">=</span> <span class="bu">list</span>(portfolio_df[<span class="st">'Bio'</span>].values)</span>
+<span id="cb1-13"><a href=""></a><span class="co"># Preprocess bios individually</span></span>
+<span id="cb1-14"><a href=""></a><span class="kw">def</span> clean_bio(raw_bio_str, lang):</span>
+<span id="cb1-15"><a href=""></a>  lang_nlp <span class="op">=</span> nlp[lang]</span>
+<span id="cb1-16"><a href=""></a>  bio_doc <span class="op">=</span> lang_nlp(raw_bio_str)</span>
+<span id="cb1-17"><a href=""></a>  bio_tokens <span class="op">=</span> [t.text <span class="cf">for</span> t <span class="kw">in</span> bio_doc <span class="cf">if</span> <span class="kw">not</span> t.is_stop]</span>
+<span id="cb1-18"><a href=""></a>  bio_sent <span class="op">=</span> <span class="st">" "</span>.join(bio_tokens)</span>
+<span id="cb1-19"><a href=""></a>  <span class="cf">return</span> bio_sent</span>
+<span id="cb1-20"><a href=""></a><span class="kw">def</span> clean_bios(raw_bio_list, lang):</span>
+<span id="cb1-21"><a href=""></a>  cleaned_sents <span class="op">=</span> []</span>
+<span id="cb1-22"><a href=""></a>  <span class="cf">for</span> cur_bio <span class="kw">in</span> raw_bio_list:</span>
+<span id="cb1-23"><a href=""></a>    bio_sent <span class="op">=</span> clean_bio(cur_bio, lang)</span>
+<span id="cb1-24"><a href=""></a>    cleaned_sents.append(bio_sent)</span>
+<span id="cb1-25"><a href=""></a>  <span class="cf">return</span> cleaned_sents</span>
+<span id="cb1-26"><a href=""></a>cleaned_bio_list_en <span class="op">=</span> clean_bios(bio_list_en, <span class="st">'en'</span>)</span>
+<span id="cb1-27"><a href=""></a><span class="kw">def</span> combine_bios(bio_list):</span>
+<span id="cb1-28"><a href=""></a>  bio_str <span class="op">=</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(bio_list)</span>
+<span id="cb1-29"><a href=""></a>  <span class="cf">return</span> bio_str</span>
+<span id="cb1-30"><a href=""></a>bio_str_en <span class="op">=</span> combine_bios(cleaned_bio_list_en)</span>
+<span id="cb1-31"><a href=""></a>wc_options <span class="op">=</span> {</span>
+<span id="cb1-32"><a href=""></a>  <span class="st">'background_color'</span>: <span class="st">'white'</span>,</span>
+<span id="cb1-33"><a href=""></a>  <span class="st">'font_path'</span>: <span class="st">'assets/Roboto.ttf'</span>,</span>
+<span id="cb1-34"><a href=""></a>  <span class="st">'scale'</span>: <span class="dv">8</span>,</span>
+<span id="cb1-35"><a href=""></a>  <span class="st">'random_state'</span>: <span class="dv">2024</span>,</span>
+<span id="cb1-36"><a href=""></a>  <span class="st">'width'</span>: <span class="dv">500</span>,</span>
+<span id="cb1-37"><a href=""></a>  <span class="st">'height'</span>: <span class="dv">400</span>,</span>
+<span id="cb1-38"><a href=""></a>}</span>
+<span id="cb1-39"><a href=""></a><span class="kw">def</span> display_wordcloud(text_str):</span>
+<span id="cb1-40"><a href=""></a>  cloud <span class="op">=</span> WordCloud(<span class="op">**</span>wc_options)</span>
+<span id="cb1-41"><a href=""></a>  cloud.generate(text_str)</span>
+<span id="cb1-42"><a href=""></a>  plt.imshow(cloud, interpolation<span class="op">=</span><span class="st">'bilinear'</span>)</span>
+<span id="cb1-43"><a href=""></a>  plt.axis(<span class="st">"off"</span>)</span>
+<span id="cb1-44"><a href=""></a>display_wordcloud(bio_str_en)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -402,6 +515,13 @@ Jeff Jacobs
 </div>
 </div><div class="column" style="width:50%;">
 <div id="cell-orig-wordcloud-uk" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a>bio_list_uk <span class="op">=</span> <span class="bu">list</span>(portfolio_df[<span class="st">'Bio_uk'</span>].values)</span>
+<span id="cb2-2"><a href=""></a>cleaned_bio_list_uk <span class="op">=</span> clean_bios(bio_list_uk, <span class="st">'uk'</span>)</span>
+<span id="cb2-3"><a href=""></a>bio_str_uk <span class="op">=</span> combine_bios(cleaned_bio_list_uk)</span>
+<span id="cb2-4"><a href=""></a>display_wordcloud(bio_str_uk)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -415,16 +535,33 @@ Jeff Jacobs
 <li>How might this be <mark data-term="несправедливий">biased</mark>, if we want <mark data-term="рівна частка">equal contribution</mark>?</li>
 </ul>
 </section>
-<section id="now-with-fake-jeff-bio" class="slide level2 crunch-title crunch-img">
+<section id="now-with-fake-jeff-bio" class="slide level2 crunch-title crunch-img smaller">
 <h2>Now With Fake Jeff Bio</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div id="jeff-bio-en" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a>jj_sent_en <span class="op">=</span> <span class="st">"Jeff teaches Data Ethics at Georgetown University."</span></span>
+<span id="cb3-2"><a href=""></a>jj_bio_en <span class="op">=</span> <span class="st">" "</span>.join([jj_sent_en] <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb3-3"><a href=""></a><span class="bu">print</span>(jj_bio_en[:<span class="dv">230</span>] <span class="op">+</span> <span class="st">"..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Jeff teaches Data Ethics at Georgetown University. Jeff teaches Data Ethics at Georgetown University. Jeff teaches Data Ethics at Georgetown University. Jeff teaches Data Ethics at Georgetown University. Jeff teaches Data Ethics a...</code></pre>
 </div>
 </div>
 <div id="cell-wordcloud-jeff-bio-en" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a>bio_list_fake_en <span class="op">=</span> cleaned_bio_list_en.copy()</span>
+<span id="cb5-2"><a href=""></a>cleaned_jj_bio_en <span class="op">=</span> clean_bio(jj_bio_en, <span class="st">'en'</span>)</span>
+<span id="cb5-3"><a href=""></a>bio_list_fake_en.append(cleaned_jj_bio_en)</span>
+<span id="cb5-4"><a href=""></a>bio_str_fake_en <span class="op">=</span> combine_bios(bio_list_fake_en)</span>
+<span id="cb5-5"><a href=""></a>bio_cloud_fake_en <span class="op">=</span> WordCloud(<span class="op">**</span>wc_options)</span>
+<span id="cb5-6"><a href=""></a>bio_cloud_fake_en.generate(bio_str_fake_en)</span>
+<span id="cb5-7"><a href=""></a>plt.imshow(bio_cloud_fake_en, interpolation<span class="op">=</span><span class="st">'bilinear'</span>)</span>
+<span id="cb5-8"><a href=""></a>plt.axis(<span class="st">"off"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -435,11 +572,28 @@ Jeff Jacobs
 </div>
 </div><div class="column" style="width:50%;">
 <div id="jeff-bio-uk" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a>jj_sent_uk <span class="op">=</span> <span class="st">"Джеф викладає етику даних у Джорджтаунському університеті."</span></span>
+<span id="cb6-2"><a href=""></a>jj_bio_uk <span class="op">=</span> <span class="st">" "</span>.join([jj_sent_uk] <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb6-3"><a href=""></a><span class="bu">print</span>(jj_bio_uk[:<span class="dv">200</span>] <span class="op">+</span> <span class="st">"..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Джеф викладає етику даних у Джорджтаунському університеті. Джеф викладає етику даних у Джорджтаунському університеті. Джеф викладає етику даних у Джорджтаунському університеті. Джеф викладає етику дан...</code></pre>
 </div>
 </div>
 <div id="cell-wordcloud-jeff-bio-uk" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href=""></a>bio_list_fake_uk <span class="op">=</span> cleaned_bio_list_uk.copy()</span>
+<span id="cb8-2"><a href=""></a>cleaned_jj_bio_uk <span class="op">=</span> clean_bio(jj_bio_uk, <span class="st">'uk'</span>)</span>
+<span id="cb8-3"><a href=""></a>bio_list_fake_uk.append(cleaned_jj_bio_uk)</span>
+<span id="cb8-4"><a href=""></a>bio_str_fake_uk <span class="op">=</span> combine_bios(bio_list_fake_uk)</span>
+<span id="cb8-5"><a href=""></a>bio_cloud_fake_uk <span class="op">=</span> WordCloud(<span class="op">**</span>wc_options)</span>
+<span id="cb8-6"><a href=""></a>bio_cloud_fake_uk.generate(bio_str_fake_uk)</span>
+<span id="cb8-7"><a href=""></a>plt.imshow(bio_cloud_fake_uk, interpolation<span class="op">=</span><span class="st">'bilinear'</span>)</span>
+<span id="cb8-8"><a href=""></a>plt.axis(<span class="st">"off"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -450,7 +604,7 @@ Jeff Jacobs
 </div>
 </div></div>
 </section>
-<section id="normalizing-counts" class="slide level2 crunch-title crunch-img">
+<section id="normalizing-counts" class="slide level2 crunch-title crunch-img smaller">
 <h2>Normalizing Counts</h2>
 <ul>
 <li>This is where <strong>ethical framework</strong> comes into play, whether implicit or explicit!</li>
@@ -458,7 +612,45 @@ Jeff Jacobs
 </ul>
 <div class="columns">
 <div class="column" style="width:50%;">
+<div id="normalize-freqs-en" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href=""></a><span class="co"># Each bio's freqs should count 1/N in overall</span></span>
+<span id="cb9-2"><a href=""></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer</span>
+<span id="cb9-3"><a href=""></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> normalize</span>
+<span id="cb9-4"><a href=""></a>cv_en <span class="op">=</span> CountVectorizer(</span>
+<span id="cb9-5"><a href=""></a>  min_df<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb9-6"><a href=""></a>  <span class="co"># stop_words='english'</span></span>
+<span id="cb9-7"><a href=""></a>)</span>
+<span id="cb9-8"><a href=""></a>dtm_en_sparse <span class="op">=</span> cv_en.fit_transform(bio_list_fake_en)</span>
+<span id="cb9-9"><a href=""></a>dtm_en <span class="op">=</span> dtm_en_sparse.todense()</span>
+<span id="cb9-10"><a href=""></a><span class="co">#print(dtm.shape)</span></span>
+<span id="cb9-11"><a href=""></a>row_sums_en <span class="op">=</span> dtm_en.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-12"><a href=""></a><span class="co">#print(row_sums.shape)</span></span>
+<span id="cb9-13"><a href=""></a>dtm_r0_en <span class="op">=</span> dtm_en[<span class="dv">0</span>,:]</span>
+<span id="cb9-14"><a href=""></a>r0_sum_en <span class="op">=</span> dtm_r0_en.<span class="bu">sum</span>()</span>
+<span id="cb9-15"><a href=""></a>r0_norm_en <span class="op">=</span> dtm_r0_en <span class="op">/</span> r0_sum_en</span>
+<span id="cb9-16"><a href=""></a><span class="co"># Now use `normalize()`</span></span>
+<span id="cb9-17"><a href=""></a>dtm_norm_en <span class="op">=</span> normalize(np.asarray(dtm_en), axis<span class="op">=</span><span class="dv">1</span>, norm<span class="op">=</span><span class="st">'l1'</span>)</span>
+<span id="cb9-18"><a href=""></a><span class="co"># And compute col sums of normalized DTM</span></span>
+<span id="cb9-19"><a href=""></a>dtm_colsums_en <span class="op">=</span> dtm_norm_en.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb9-20"><a href=""></a><span class="co"># And combine with the words in a df</span></span>
+<span id="cb9-21"><a href=""></a>freq_df_en <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb9-22"><a href=""></a>  <span class="st">'term'</span>: cv_en.get_feature_names_out(),</span>
+<span id="cb9-23"><a href=""></a>  <span class="st">'freq'</span>: dtm_colsums_en</span>
+<span id="cb9-24"><a href=""></a>})</span>
+<span id="cb9-25"><a href=""></a><span class="co">#freq_df['term'].values</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 <div id="cell-normalized-wordcloud-en" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href=""></a>freq_dict_en <span class="op">=</span> freq_df_en.set_index(<span class="st">'term'</span>).to_dict(orient<span class="op">=</span><span class="st">'dict'</span>)[<span class="st">'freq'</span>]</span>
+<span id="cb10-2"><a href=""></a>bio_cloud_eq_en <span class="op">=</span> WordCloud(<span class="op">**</span>wc_options)</span>
+<span id="cb10-3"><a href=""></a>bio_cloud_eq_en.generate_from_frequencies(freq_dict_en)</span>
+<span id="cb10-4"><a href=""></a>plt.imshow(bio_cloud_eq_en, interpolation<span class="op">=</span><span class="st">'bilinear'</span>)</span>
+<span id="cb10-5"><a href=""></a>plt.axis(<span class="st">"off"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -468,7 +660,41 @@ Jeff Jacobs
 </div>
 </div>
 </div><div class="column" style="width:50%;">
+<div id="normalize-freqs-uk" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a>cv_uk <span class="op">=</span> CountVectorizer(</span>
+<span id="cb11-2"><a href=""></a>  min_df<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb11-3"><a href=""></a>)</span>
+<span id="cb11-4"><a href=""></a>dtm_uk_sparse <span class="op">=</span> cv_uk.fit_transform(bio_list_fake_uk)</span>
+<span id="cb11-5"><a href=""></a>dtm_uk <span class="op">=</span> dtm_uk_sparse.todense()</span>
+<span id="cb11-6"><a href=""></a><span class="co">#print(dtm.shape)</span></span>
+<span id="cb11-7"><a href=""></a>row_sums_uk <span class="op">=</span> dtm_uk.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-8"><a href=""></a><span class="co">#print(row_sums.shape)</span></span>
+<span id="cb11-9"><a href=""></a>dtm_r0_uk <span class="op">=</span> dtm_uk[<span class="dv">0</span>,:]</span>
+<span id="cb11-10"><a href=""></a>r0_sum_uk <span class="op">=</span> dtm_r0_uk.<span class="bu">sum</span>()</span>
+<span id="cb11-11"><a href=""></a>r0_norm_uk <span class="op">=</span> dtm_r0_uk <span class="op">/</span> r0_sum_uk</span>
+<span id="cb11-12"><a href=""></a><span class="co"># Now use `normalize()`</span></span>
+<span id="cb11-13"><a href=""></a>dtm_norm_uk <span class="op">=</span> normalize(np.asarray(dtm_uk), axis<span class="op">=</span><span class="dv">1</span>, norm<span class="op">=</span><span class="st">'l1'</span>)</span>
+<span id="cb11-14"><a href=""></a><span class="co"># And compute col sums of normalized DTM</span></span>
+<span id="cb11-15"><a href=""></a>dtm_colsums_uk <span class="op">=</span> dtm_norm_uk.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-16"><a href=""></a><span class="co"># And combine with the words in a df</span></span>
+<span id="cb11-17"><a href=""></a>freq_df_uk <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb11-18"><a href=""></a>  <span class="st">'term'</span>: cv_uk.get_feature_names_out(),</span>
+<span id="cb11-19"><a href=""></a>  <span class="st">'freq'</span>: dtm_colsums_uk</span>
+<span id="cb11-20"><a href=""></a>})</span>
+<span id="cb11-21"><a href=""></a><span class="co">#freq_df['term'].values</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 <div id="cell-normalized-wordcloud-uk" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href=""></a>freq_dict_uk <span class="op">=</span> freq_df_uk.set_index(<span class="st">'term'</span>).to_dict(orient<span class="op">=</span><span class="st">'dict'</span>)[<span class="st">'freq'</span>]</span>
+<span id="cb12-2"><a href=""></a>bio_cloud_eq_uk <span class="op">=</span> WordCloud(<span class="op">**</span>wc_options)</span>
+<span id="cb12-3"><a href=""></a>bio_cloud_eq_uk.generate_from_frequencies(freq_dict_uk)</span>
+<span id="cb12-4"><a href=""></a>plt.imshow(bio_cloud_eq_uk, interpolation<span class="op">=</span><span class="st">'bilinear'</span>)</span>
+<span id="cb12-5"><a href=""></a>plt.axis(<span class="st">"off"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -479,7 +705,7 @@ Jeff Jacobs
 </div>
 </div></div>
 </section>
-<section id="equality-of-what" class="slide level2 crunch-title crunch-ul math-80 title-09">
+<section id="equality-of-what" class="slide level2 crunch-title crunch-ul math-80 title-09 text-90">
 <h2><mark data-term="Рівність Чого?">Equality of What?</mark></h2>
 <ul>
 <li>Is <span class="math inline">\(\omega_i = 1/N\)</span> the “correct” choice?</li>
@@ -529,7 +755,7 @@ Our Example:
 <h1>Resource Allocation</h1>
 
 </section>
-<section id="background-indochina-mine-defusal" class="slide level2 crunch-title">
+<section id="background-indochina-mine-defusal" class="slide level2 crunch-title title-09 text-90">
 <h2>Background: Indochina Mine Defusal</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -629,7 +855,7 @@ Our Example:
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/medical_distances.jpg" style="width:75.0%"></p>
+<p><img data-src="images/medical_distances.jpg" style="width:70.0%"></p>
 <figcaption>From <span class="citation" data-cites="shahid_comparison_2009">Shahid et al. (<a href="#/references-resources" role="doc-biblioref" onclick="">2009</a>)</span></figcaption>
 </figure>
 </div>

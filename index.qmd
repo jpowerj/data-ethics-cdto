@@ -8,10 +8,11 @@ date-format: "dddd, D MMMM YYYY"
 format:
   revealjs:
     output-file: "index.html"
+    echo: true
     code-fold: true
     include-in-header:
       text: |
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+        <link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css'><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
         <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js"></script>
     favicon: "favicon.png"
@@ -206,7 +207,7 @@ nevyznachenyy (nevoyznachenyy) = unspecified
 
 :::
 
-## Ethical Framework Implicit in Learning "Who You Are"! {.smaller .crunch-title .crunch-quarto-figure}
+## Ethical Framework Implicit in Learning "Who You Are"! {.smaller .crunch-title .title-09 .crunch-quarto-figure}
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -277,7 +278,7 @@ display_wordcloud(bio_str_uk)
 
 * How might this be <mark data-term='несправедливий'>biased</mark>, if we want <mark data-term='рівна частка'>equal contribution</mark>?
 
-## Now With Fake Jeff Bio {.crunch-title .crunch-img}
+## Now With Fake Jeff Bio {.crunch-title .crunch-img .smaller}
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -328,7 +329,7 @@ plt.axis("off")
 :::
 :::
 
-## Normalizing Counts {.crunch-title .crunch-img}
+## Normalizing Counts {.crunch-title .crunch-img .smaller}
 
 * This is where **ethical framework** comes into play, whether implicit or explicit!
 * Normalized: each person $i$ gets weight $\omega_i = 1/N$
@@ -416,7 +417,7 @@ plt.axis("off")
 :::
 :::
 
-## <mark data-term="Рівність Чого?">Equality of What?</mark> {.crunch-title .crunch-ul .math-80 .title-09}
+## <mark data-term="Рівність Чого?">Equality of What?</mark> {.crunch-title .crunch-ul .math-80 .title-09 .text-90}
 
 * Is $\omega_i = 1/N$ the "correct" choice?
 * Should we ensure **each person/ministry gets $\geq 1$ big word**
@@ -463,7 +464,7 @@ $$
 
 # Resource Allocation {data-stack-name="Resource Allocation"}
 
-## Background: Indochina Mine Defusal {.crunch-title}
+## Background: Indochina Mine Defusal {.crunch-title .title-09 .text-90}
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -537,7 +538,7 @@ rozdilyaty
 :::
 ::: {.column width="50%"}
 
-![From @shahid_comparison_2009](images/medical_distances.jpg){fig-align="center" width="75%"}
+![From @shahid_comparison_2009](images/medical_distances.jpg){fig-align="center" width="70%"}
 
 :::
 :::
